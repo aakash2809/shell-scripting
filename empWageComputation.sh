@@ -1,7 +1,8 @@
 #!/bin/bash -x
 
 wagePerHour=20
-fullDayHour=8
+fullTimeHour=8
+partTimeHour=4
 
 echo "Welcome to Employee Wage Computation"
 
@@ -13,6 +14,11 @@ else
 	echo "Employee is Absent"
 fi
 
-#TO CALCULATE EMPLOYEE DAILY WAGE
-calculateDailyWage=$(( wagePerHour*fullDayHour))
-echo "employee daily wage - " $calculateDailyWage
+#TO CALCULATE FULL DAY EMPLOYEE DAILY WAGE
+calculateDailyWage=$(( wagePerHour*fullTimeHour))
+
+echo "full time employee daily wage - " $calculateDailyWage
+
+#TO CALCULATE PART TIME EMPLOYEE DAILY WAGE
+calculateDailyWage=$(( wagePerHour*partTimeHour))
+echo "part time employee daily wage - " $calculateDailyWage

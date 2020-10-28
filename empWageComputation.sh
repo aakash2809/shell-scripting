@@ -7,6 +7,8 @@ FULL_TIME_HOUR=8
 PART_TIME_HOUR=4
 totalWorkingDays=0
 totalWorkingHours=0
+#declaration of array
+declare -a dayWiseWageStorage
 #TO CHECK EMPLOYEE IS PART TIME OR FULL TIME
 getWorkDonePerDay() {
         case $1 in
@@ -24,6 +26,7 @@ do
 	totalWorkingHours=$((totalWorkingHours+workDonePerDay))
 	dailyWage=$(( wagePerHour*workDonePerDay ))
 	monthlyWage=$(( monthlyWage + dailyWage ))
+	dayWiseWageStorage[((totalWorkingDays))]=$dailyWage
 done
-echo "employee daily wage - " $dailyWage
 echo "employee monthly wage - " $monthlyWage
+echo "wages per day : " ${dayWiseWageStorage[@]}

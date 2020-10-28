@@ -9,6 +9,8 @@ totalWorkingDays=0
 totalWorkingHours=0
 #declaration of array
 declare -a dayWiseWageStorage
+#declaration of dictionary
+declare -i dailyWageStorage
 #TO CHECK EMPLOYEE IS PART TIME OR FULL TIME
 getWorkDonePerDay() {
         case $1 in
@@ -27,6 +29,9 @@ do
 	dailyWage=$(( wagePerHour*workDonePerDay ))
 	monthlyWage=$(( monthlyWage + dailyWage ))
 	dayWiseWageStorage[((totalWorkingDays))]=$dailyWage
+	dailyWageStorage[((totalWorkingDays))]=$dailyWage
 done
 echo "employee monthly wage - " $monthlyWage
-echo "wages per day : " ${dayWiseWageStorage[@]}
+echo "wages per day in array : " ${dayWiseWageStorage[@]}
+echo "wages per day in dictionary : " ${dailyWageStorage[@]}
+echo "days in dictionary : " ${!dailyWageStorage[@]}

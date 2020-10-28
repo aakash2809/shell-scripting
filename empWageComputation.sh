@@ -2,9 +2,11 @@
 echo "Welcome to Employee Wage Computation"
 wagePerHour=20
 workingDayPerMonth=20
+workingHourPerMonth=100
 FULL_TIME_HOUR=8
 PART_TIME_HOUR=4
 totalWorkingDays=0
+totalWorkingHours=0
 #TO CHECK EMPLOYEE IS PART TIME OR FULL TIME
 getWorkDonePerDay() {
         case $1 in
@@ -15,10 +17,11 @@ getWorkDonePerDay() {
         echo $workDonePerDay
 }
 #TO CALCULATE EMPLOYEE MONTHLY WAGE
-while [ $totalWorkingDays -lt $workingDayPerMonth ]
+while [[ $totalWorkingDays -lt $workingDayPerMonth && $totalWorkingHours -lt $workingHourPerMonth ]]
 do
         ((totalWorkingDays++));
 	workDonePerDay=$(getWorkDonePerDay $((RANDOM%2)) )
+	totalWorkingHours=$((totalWorkingHours+workDonePerDay))
 	dailyWage=$(( wagePerHour*workDonePerDay ))
 	monthlyWage=$(( monthlyWage + dailyWage ))
 done

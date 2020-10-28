@@ -1,15 +1,10 @@
 #!/bin/bash -x
 echo "Welcome to Employee Wage Computation"
 wagePerHour=20
+workingDayPerMonth=20
 FULL_TIME_HOUR=8
 PART_TIME_HOUR=4
-#TO CHECK THE EMPLOYEE IS PRESENT OR ABSENT
-if [ $((RANDOM%2)) -eq 1 ]
-then
-	echo "Employee is Present"
-else
-	echo "Employee is Absent"
-fi
+totalWorkingDays=0
 #TO CHECK EMPLOYEE IS PART TIME OR FULL TIME
 getWorkDonePerDay() {
         case $1 in
@@ -19,7 +14,13 @@ getWorkDonePerDay() {
         esac
         echo $workDonePerDay
 }
-#TO CALCULATE EMPLOYEE DAILY WAGE
-workDonePerDay=$(getWorkDonePerDay $((RANDOM%2)) )
-calculateDailyWage=$(( wagePerHour*workDonePerDay ))
-echo "employee daily wage - " $calculateDailyWage
+#TO CALCULATE EMPLOYEE MONTHLY WAGE
+while [ $totalWorkingDays -lt $workingDayPerMonth ]
+do
+        ((totalWorkingDays++));
+	workDonePerDay=$(getWorkDonePerDay $((RANDOM%2)) )
+	dailyWage=$(( wagePerHour*workDonePerDay ))
+	monthlyWage=$(( monthlyWage + dailyWage ))
+done
+echo "employee daily wage - " $dailyWage
+echo "employee monthly wage - " $monthlyWage
